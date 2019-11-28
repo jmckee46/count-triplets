@@ -17,25 +17,18 @@ func countTriplets(arr []int64, r int64) int64 {
 	var count int64
 
 	for _, value := range arr {
-		fmt.Println("value:", value)
 		// check for triplet
-		if num, ok := bMap[value]; ok {
+		if _, ok := bMap[value]; ok {
 			count += bMap[value]
-			b := value / r
-			c := b / r
-			fmt.Printf("******%d triplet(s) found: %d, %d, %d\n", num, c, b, value)
 		}
 		// check for double
 		if _, ok := cMap[value]; ok {
-			fmt.Println("double found")
 			bMap[value*r] += cMap[value]
 		}
 		// always add to cMap
 		cMap[value*r]++
 	}
-	fmt.Println("bMap:", bMap)
-	fmt.Println("cMap:", cMap)
-	fmt.Println("count:", count)
+
 	return count
 }
 
